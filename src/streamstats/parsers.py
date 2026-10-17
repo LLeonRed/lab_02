@@ -10,8 +10,11 @@ def reading(file, format):
         if format == "jsonl":
             for line in f:
                 #Построчное чтение JSONL файла
-                data = json.loads(line)
-                yield [data, file]
+                try:
+                    data = json.loads(line)
+                    yield [data, file]
+                except:
+                    yield ["Wrong format"]
         elif format == "csv":
             reader = csv.reader(f)
             title = ""
