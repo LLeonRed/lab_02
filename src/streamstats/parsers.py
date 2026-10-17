@@ -14,7 +14,7 @@ def reading(file, format):
                     data = json.loads(line)
                     yield [data, file]
                 except:
-                    yield ["Wrong format"]
+                    yield ["Wrong format", file]
         elif format == "csv":
             reader = csv.reader(f)
             title = ""
@@ -24,9 +24,9 @@ def reading(file, format):
                     #Формирование первой строки-заголовка
                     title = [i for i in row]
                 else:
-                    if len(row)!=len(title):
-                        yield ["Wrong format"]
-                    else:
+                    try:
                         yield [{title[i]: row[i] for i in range(len(row))}, file]
+                    except:
+                        yield ["Wrong format", file]
         else:
             raise StreamStatsError(f"Wrong Format in {file}")
