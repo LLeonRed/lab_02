@@ -1,0 +1,2 @@
+{"timestamp":"2026-10-17T11:00:00","level":"CRITICAL","source":"database","message":"Database crashed"}
+{"timestamp":"2026-10-17T11:10:00","level":"WARNING","source":"server","message":"High CPU usage"}

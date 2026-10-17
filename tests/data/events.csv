@@ -1,0 +1,3 @@
+timestamp,level,source,message
+2026-10-17T10:00:00,INFO,server,Server started
+2026-10-17T10:10:00,ERROR,database,Connection failed

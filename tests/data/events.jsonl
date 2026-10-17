@@ -1,0 +1,2 @@
+{"timestamp":"2026-10-17T10:00:00","level":"INFO","source":"server","message":"Server started"}
+{"timestamp":"2026-10-17T10:10:00","level":"ERROR","source":"database","message":"Connection failed"}
