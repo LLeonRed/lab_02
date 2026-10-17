@@ -47,7 +47,7 @@ def form_statistic(events):
                         source_counter[i[j]] = 1
                     else:
                         source_counter[i[j]] += 1
-    errors = sorted([[errors[elem], elem] for elem in errors], key=lambda x: -x[0])[-5:] #Оставление 5 самых частых источников ошибок
+    errors = sorted([[errors[elem], elem] for elem in errors])[-5:] #Оставление 5 самых частых источников ошибок
     errors = {k[1]: k[0] for k in errors}
     return [{
         "events": counter,
