@@ -1,4 +1,4 @@
-from .errors import StreamStatsError
+from .errors import InvalidEventError, InvalidTimestampError
 from .constants import LEVEL, STRUCTURE
 
 def checking(event, skip, number, file):
@@ -6,7 +6,7 @@ def checking(event, skip, number, file):
         if len(event) != 4:
             #Проверка структуры
             if not skip:
-                raise StreamStatsError(f"Wrong structure in string {number} in file {file}")
+                raise InvalidEventError(f"Wrong structure in string {number} in file {file}")
             else:
                 return {"Wrong structure"}
         check_type = 0
@@ -39,7 +39,7 @@ def checking(event, skip, number, file):
                     )
                 ):
                     if not skip:
-                        raise StreamStatsError(f"Wrong date in string {number} in file {file}")
+                        raise InvalidTimestampError(f"Wrong date in string {number} in file {file}")
                     else:
                         return {"Wrong date"}
                 if (
@@ -50,27 +50,27 @@ def checking(event, skip, number, file):
                     or any(len(j) != 2 for j in timestamp)
                 ):
                     if not skip:
-                        raise StreamStatsError(f"Wrong date in string {number} in file {file}")
+                        raise InvalidTimestampError(f"Wrong date in string {number} in file {file}")
                     else:
                         return {"Wrong date"}
             elif check_type == 1:
                 #Проверка на тип информации
                 if event[i] not in LEVEL:
                     if not skip:
-                        raise StreamStatsError(f"Wrong level in string {number} in file {file}")
+                        raise InvalidEventError(f"Wrong level in string {number} in file {file}")
                     else:
                         return {"Wrong level"}
             elif check_type == 2:
                 #Проверка на непустой источник
                 if not event[i]:
                     if not skip:
-                        raise StreamStatsError(f"Empty source in string {number} in file {file}")
+                        raise InvalidEventError(f"Empty source in string {number} in file {file}")
                     else:
                         return {"Empty source"}
             if i != STRUCTURE[check_type]:
                 #Проверка формата структуры
                 if not skip:
-                    raise StreamStatsError(f"Wrong structure in string {number} in file {file}")
+                    raise InvalidEventError(f"Wrong structure in string {number} in file {file}")
                 else:
                     return {"Wrong structure"}
             check_type += 1
