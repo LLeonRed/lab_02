@@ -1,7 +1,7 @@
 import csv
 import json
 
-from .errors import StreamStatsError
+from .errors import UnsupportedFormatError
 
 
 def reading(file, format):
@@ -29,4 +29,4 @@ def reading(file, format):
                     except:
                         yield ["Wrong format", file]
         else:
-            raise StreamStatsError(f"Wrong Format in {file}")
+            raise UnsupportedFormatError(f"Wrong Format in {file}")
