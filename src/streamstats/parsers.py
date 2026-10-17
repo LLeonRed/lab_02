@@ -21,6 +21,9 @@ def reading(file, format):
                     #Формирование первой строки-заголовка
                     title = [i for i in row]
                 else:
-                    yield [{title[i]: row[i] for i in range(len(row))}, file]
+                    if len(row)!=len(title):
+                        yield ["Wrong format"]
+                    else:
+                        yield [{title[i]: row[i] for i in range(len(row))}, file]
         else:
             raise StreamStatsError(f"Wrong Format in {file}")
